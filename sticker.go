@@ -68,11 +68,11 @@ func (nS *newSticker) parse() error {
 		if err != nil {
 			return err
 		}
+		defer resp.Body.Close()
 		data, err := io.ReadAll(resp.Body)
 		if err != nil {
 			return err
 		}
-		resp.Body.Close()
 		*nS.data = data
 	}
 	if len(*nS.data) == 0 {
